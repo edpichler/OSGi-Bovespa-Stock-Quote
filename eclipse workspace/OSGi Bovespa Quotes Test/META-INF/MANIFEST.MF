@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: OSGi_Bovespa_Quotes_Test
+Bundle-SymbolicName: OSGi_Bovespa_Quotes_Test
+Bundle-Version: 1.0.0.qualifier
+Fragment-Host: OSGi_Bovespa_Quotes
+Import-Package: junit.framework;version="3.8.2",
+ org.apache.felix.ipojo.junit4osgi

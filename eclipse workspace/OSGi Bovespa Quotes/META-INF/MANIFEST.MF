@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: OSGi_Bovespa_Quotes
+Bundle-SymbolicName: OSGi_Bovespa_Quotes
+Bundle-Version: 1.0.0.0
+Export-Package: com.edpichler.osgi.bovespa
+Import-Package: org.jdom,
+ org.jdom.input,
+ org.jdom.output
+Bundle-Vendor: www.edpichler.com
+Test-Suite: com.edpichler.osgi.bovespa.test.Suite
