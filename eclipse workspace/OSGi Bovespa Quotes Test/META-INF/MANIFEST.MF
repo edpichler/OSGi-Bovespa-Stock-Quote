@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
+Bundle-Description: Testes integrados para o componente Host. Execute-os com o framework iPojo. 
 Bundle-Name: OSGi_Bovespa_Quotes_Test
 Bundle-SymbolicName: OSGi_Bovespa_Quotes_Test
 Bundle-Version: 1.0.0.qualifier
