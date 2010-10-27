@@ -11,8 +11,6 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 
-import com.edpichler.osgi.bovespa.pojo.Ativo;
-import com.edpichler.osgi.bovespa.pojo.Cotacao;
 
 /**
  * Classe que retorna um objeto para comunicação com os servidores da Bovespa.

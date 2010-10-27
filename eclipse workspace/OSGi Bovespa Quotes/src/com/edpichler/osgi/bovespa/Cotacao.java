@@ -1,6 +1,7 @@
-package com.edpichler.osgi.bovespa.pojo;
+package com.edpichler.osgi.bovespa;
 
 import java.util.Date;
+
 
 
 public class Cotacao {

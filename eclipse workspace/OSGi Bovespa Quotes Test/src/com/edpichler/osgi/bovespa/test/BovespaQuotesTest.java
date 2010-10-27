@@ -5,8 +5,8 @@ import java.util.List;
 import junit.framework.TestCase;
 
 import com.edpichler.osgi.bovespa.BovespaProvider;
+import com.edpichler.osgi.bovespa.Cotacao;
 import com.edpichler.osgi.bovespa.IBovespaQuoteRetriever;
-import com.edpichler.osgi.bovespa.pojo.Cotacao;
 
 public class BovespaQuotesTest extends TestCase {
 
@@ -31,6 +31,14 @@ public class BovespaQuotesTest extends TestCase {
 			assertTrue(ultimo != 0);
 		}
 
+	}
+	public static void main(String[] args) {
+		IBovespaQuoteRetriever prov = BovespaProvider.createQuoteRetriever();
+		Cotacao quote = prov.getQuote("OGXP3");
+		double ultimo = quote.getUltimo();
+		
+		System.out.println(quote);
+		
 	}
 
 }
