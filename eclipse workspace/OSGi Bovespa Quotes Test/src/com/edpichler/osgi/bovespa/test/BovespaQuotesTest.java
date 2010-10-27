@@ -32,13 +32,4 @@ public class BovespaQuotesTest extends TestCase {
 		}
 
 	}
-	public static void main(String[] args) {
-		IBovespaQuoteRetriever prov = BovespaProvider.createQuoteRetriever();
-		Cotacao quote = prov.getQuote("OGXP3");
-		double ultimo = quote.getUltimo();
-		
-		System.out.println(quote);
-		
-	}
-
 }
