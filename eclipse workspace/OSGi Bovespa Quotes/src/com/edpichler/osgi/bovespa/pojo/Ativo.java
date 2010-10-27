@@ -1,4 +1,4 @@
-package com.edpichler.osgi.bovespa;
+package com.edpichler.osgi.bovespa.pojo;
 
 /** Ativo. Ex.: OGXP3, VALE5, PETR4 */
 public class Ativo {

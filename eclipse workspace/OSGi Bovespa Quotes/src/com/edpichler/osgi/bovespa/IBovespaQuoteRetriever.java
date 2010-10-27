@@ -2,6 +2,8 @@ package com.edpichler.osgi.bovespa;
 
 import java.util.List;
 
+import com.edpichler.osgi.bovespa.pojo.Cotacao;
+
 /**Classe para comunicação com a BMF Bovespa*/
 public interface IBovespaQuoteRetriever {
 	/**
