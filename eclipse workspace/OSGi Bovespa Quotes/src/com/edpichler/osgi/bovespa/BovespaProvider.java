@@ -70,7 +70,6 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 			} else {
 				return null;
 			}
-			// TODO COLOCAR LOGS SOBRE OS REQUESTS FEITOS
 		} catch (Exception e) {
 			throw e;
 		}
