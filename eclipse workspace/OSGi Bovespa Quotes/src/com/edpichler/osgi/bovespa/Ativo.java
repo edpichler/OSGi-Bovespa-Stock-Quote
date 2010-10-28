@@ -9,13 +9,13 @@ public class Ativo {
 	 */
 	@Override
 	public String toString() {
-		return "Ativo [codigo=" + codigo + "]";
+		return "Ativo [codigo=" + codigo + "; nome = " + nome + "]";
 	}
 
-	private String codigo;
+	private String codigo, nome;
 
-	public Ativo(String code) {
-		codigo = code;
+	
+	public Ativo() {		
 	}
 
 	public void setCodigo(String code) {
@@ -28,5 +28,13 @@ public class Ativo {
 
 	public String getCodigo() {
 		return codigo;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getNome() {
+		return nome;
 	}
 }

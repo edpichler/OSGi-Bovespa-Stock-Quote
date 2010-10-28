@@ -85,8 +85,9 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 			String medio, String maximo, String minimo, String abertura,
 			String data, String nome, String codigo) throws ParseException {
 
-		Ativo at = new Ativo(nome);
+		Ativo at = new Ativo();
 		at.setCodigo(codigo);
+		at.setNome(nome);
 
 		Cotacao cot = new Cotacao(at);
 		// Data="27/10/2010 13:24:47"
