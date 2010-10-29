@@ -4,7 +4,9 @@ Bundle-Name: OSGi_Bovespa_Quotes
 Bundle-SymbolicName: OSGi_Bovespa_Quotes
 Bundle-Version: 1.0.0.0
 Export-Package: com.edpichler.osgi.bovespa
-Import-Package: org.jdom,
+Import-Package: 
+ org.aspectj.runtime;version="1.6.8",
+ org.jdom,
  org.jdom.input,
  org.jdom.output
 Bundle-Vendor: www.edpichler.com
