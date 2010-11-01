@@ -96,14 +96,25 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 				.parse(data);
 
 		cot.setData(_dt);
-		cot.setAbertura(Double.parseDouble(abertura.replace(",", ".")));
-		cot.setMaximo(Double.parseDouble(maximo.replace(",", ".")));
-		cot.setMinimo(Double.parseDouble(minimo.replace(",", ".")));
-		cot.setMedio(Double.parseDouble(medio.replace(",", ".")));
-		cot.setOscilacao(Double.parseDouble(oscilacao.replace(",", ".")));
-		cot.setUltimo(Double.parseDouble(ultimo.replace(",", ".")));
-
+		cot.setAbertura(getDouble(abertura));
+		cot.setMaximo(getDouble(maximo.replace(",", ".")));
+		cot.setMinimo(getDouble(minimo.replace(",", ".")));
+		cot.setMedio(getDouble(medio.replace(",", ".")));
+		cot.setOscilacao(getDouble(oscilacao.replace(",", ".")));
+		cot.setUltimo(getDouble(ultimo.replace(",", ".")));	
+		
+		if(cot.getUltimo() == 0){
+			return null;
+		}
 		return cot;
+	}
+
+	private double getDouble(String valor) {
+		valor = valor.replaceAll(",", ".");
+		if(valor.length() == 0){
+			return 0;
+		}
+		return Double.parseDouble(valor);
 	}
 
 	private String getPattern(String example) {		
