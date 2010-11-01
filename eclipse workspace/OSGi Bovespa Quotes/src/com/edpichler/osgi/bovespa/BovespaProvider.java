@@ -11,7 +11,6 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 
-
 /**
  * Classe que retorna um objeto para comunicação com os servidores da Bovespa.
  * 
@@ -90,8 +89,11 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 		at.setNome(nome);
 
 		Cotacao cot = new Cotacao(at);
-		// Data="27/10/2010 13:24:47"
-		Date _dt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(data);
+		// Data="27/10/2010 13:24:47" e com hora zerada vem assim
+		// "29/10/201000:00:00"
+		String padrao = getPattern(data);
+		Date _dt = new SimpleDateFormat(padrao)
+				.parse(data);
 
 		cot.setData(_dt);
 		cot.setAbertura(Double.parseDouble(abertura.replace(",", ".")));
@@ -102,5 +104,15 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 		cot.setUltimo(Double.parseDouble(ultimo.replace(",", ".")));
 
 		return cot;
+	}
+
+	private String getPattern(String example) {		
+		if(example.contains(" ")){
+			return "dd/MM/yyyy" + " " + "HH:mm:ss";
+		}else{
+			return "dd/MM/yyyyHH:mm:ss";
+		}
+		 
+		
 	}
 }
