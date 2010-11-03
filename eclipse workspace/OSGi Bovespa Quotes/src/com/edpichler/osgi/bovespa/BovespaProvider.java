@@ -84,16 +84,11 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 			String medio, String maximo, String minimo, String abertura,
 			String data, String nome, String codigo) throws ParseException {
 
-		Ativo at = new Ativo();
-		at.setCodigo(codigo);
-		at.setNome(nome);
-
-		Cotacao cot = new Cotacao(at);
+		Cotacao cot = new Cotacao();
 		// Data="27/10/2010 13:24:47" e com hora zerada vem assim
 		// "29/10/201000:00:00"
 		String padrao = getPattern(data);
-		Date _dt = new SimpleDateFormat(padrao)
-				.parse(data);
+		Date _dt = new SimpleDateFormat(padrao).parse(data);
 
 		cot.setData(_dt);
 		cot.setAbertura(getDouble(abertura));
@@ -101,9 +96,11 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 		cot.setMinimo(getDouble(minimo.replace(",", ".")));
 		cot.setMedio(getDouble(medio.replace(",", ".")));
 		cot.setOscilacao(getDouble(oscilacao.replace(",", ".")));
-		cot.setUltimo(getDouble(ultimo.replace(",", ".")));	
-		
-		if(cot.getUltimo() == 0){
+		cot.setUltimo(getDouble(ultimo.replace(",", ".")));
+		cot.setCodigo(codigo);
+		cot.setNome(nome);
+
+		if (cot.getUltimo() == 0) {
 			return null;
 		}
 		return cot;
@@ -111,19 +108,18 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 
 	private double getDouble(String valor) {
 		valor = valor.replaceAll(",", ".");
-		if(valor.length() == 0){
+		if (valor.length() == 0) {
 			return 0;
 		}
 		return Double.parseDouble(valor);
 	}
 
-	private String getPattern(String example) {		
-		if(example.contains(" ")){
+	private String getPattern(String example) {
+		if (example.contains(" ")) {
 			return "dd/MM/yyyy" + " " + "HH:mm:ss";
-		}else{
+		} else {
 			return "dd/MM/yyyyHH:mm:ss";
 		}
-		 
-		
+
 	}
 }

@@ -2,17 +2,11 @@ package com.edpichler.osgi.bovespa;
 
 import java.util.Date;
 
-
-
 public class Cotacao {
 
-	private Ativo ativo;
 	private Date data;
 	private double abertura, minimo, maximo, medio, ultimo, oscilacao;
-
-	public Cotacao(Ativo at) {
-		ativo = at;
-	}
+	private String codigo, nome;
 
 	/**
 	 * 
@@ -120,24 +114,28 @@ public class Cotacao {
 		this.oscilacao = oscilacao;
 	}
 
-
-	/**
-	 * @return the ativo
-	 */
-	public Ativo getAtivo() {
-		return ativo;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
-		return "Cotacao [abertura=" + abertura + ", ativo=" + ativo + ", data="
-				+ data + ", maximo=" + maximo + ", medio=" + medio
-				+ ", minimo=" + minimo + ", oscilacao=" + oscilacao
-				+ ", ultimo=" + ultimo + "]";
+		return "Cotacao [data=" + data + ", abertura=" + abertura + ", minimo="
+				+ minimo + ", maximo=" + maximo + ", medio=" + medio
+				+ ", ultimo=" + ultimo + ", oscilacao=" + oscilacao
+				+ ", codigo=" + codigo + ", nome=" + nome + "]";
 	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
 }
