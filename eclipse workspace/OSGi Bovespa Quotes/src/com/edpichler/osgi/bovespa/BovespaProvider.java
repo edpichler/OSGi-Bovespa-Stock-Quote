@@ -11,6 +11,8 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 
+import com.edpichler.osgi.bovespa.impl.Quote;
+
 /**
  * Classe que retorna um objeto para comunicação com os servidores da Bovespa.
  * 
