@@ -25,16 +25,16 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 	}
 
 	@Override
-	public List<Quote> getQuotes(String[] codigoAtivo) throws Exception {
-		List<Quote> lista = new ArrayList<Quote>();
+	public List<IQuote> getQuotes(String[] codigoAtivo) throws Exception {
+		List<IQuote> lista = new ArrayList<IQuote>();
 		for (int i = 0; i < codigoAtivo.length; i++) {
-			Quote quote = getQuote(codigoAtivo[i]);
+			IQuote quote = getQuote(codigoAtivo[i]);
 			lista.add(quote);
 		}
 		return lista;
 	}
 
-	public Quote getQuote(String codigoAtivo) throws Exception {
+	public IQuote getQuote(String codigoAtivo) throws Exception {
 		String quoteUrlRequest = BOVESPA_QUOTE_URL + "?CodigoPapel="
 				+ codigoAtivo;
 
@@ -65,7 +65,7 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 				String nome = papel.getAttribute("Nome").getValue();
 				String codigo = papel.getAttribute("Codigo").getValue();
 
-				Quote cot = createCotacao(ultimo, oscilacao, medio, maximo,
+				IQuote cot = createCotacao(ultimo, oscilacao, medio, maximo,
 						minimo, abertura, data, nome, codigo);
 
 				return cot;
@@ -82,7 +82,7 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 	 * 
 	 * @throws ParseException
 	 * */
-	private Quote createCotacao(String ultimo, String oscilacao, String medio,
+	private IQuote createCotacao(String ultimo, String oscilacao, String medio,
 			String maximo, String minimo, String abertura, String data,
 			String nome, String codigo) throws ParseException {
 
