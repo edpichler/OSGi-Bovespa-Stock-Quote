@@ -11,7 +11,6 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 
-
 /**
  * Classe que retorna um objeto para comunicação com os servidores da Bovespa.
  * 
@@ -24,16 +23,16 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 	}
 
 	@Override
-	public List<Cotacao> getQuotes(String[] codigoAtivo) throws Exception {
-		List<Cotacao> lista = new ArrayList<Cotacao>();
+	public List<Quote> getQuotes(String[] codigoAtivo) throws Exception {
+		List<Quote> lista = new ArrayList<Quote>();
 		for (int i = 0; i < codigoAtivo.length; i++) {
-			Cotacao quote = getQuote(codigoAtivo[i]);
+			Quote quote = getQuote(codigoAtivo[i]);
 			lista.add(quote);
 		}
 		return lista;
 	}
 
-	public Cotacao getQuote(String codigoAtivo) throws Exception {
+	public Quote getQuote(String codigoAtivo) throws Exception {
 		String quoteUrlRequest = BOVESPA_QUOTE_URL + "?CodigoPapel="
 				+ codigoAtivo;
 
@@ -64,7 +63,7 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 				String nome = papel.getAttribute("Nome").getValue();
 				String codigo = papel.getAttribute("Codigo").getValue();
 
-				Cotacao cot = createCotacao(ultimo, oscilacao, medio, maximo,
+				Quote cot = createCotacao(ultimo, oscilacao, medio, maximo,
 						minimo, abertura, data, nome, codigo);
 
 				return cot;
@@ -81,18 +80,15 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 	 * 
 	 * @throws ParseException
 	 * */
-	private Cotacao createCotacao(String ultimo, String oscilacao,
-			String medio, String maximo, String minimo, String abertura,
-			String data, String nome, String codigo) throws ParseException {
+	private Quote createCotacao(String ultimo, String oscilacao, String medio,
+			String maximo, String minimo, String abertura, String data,
+			String nome, String codigo) throws ParseException {
 
-		Ativo at = new Ativo();
-		at.setCodigo(codigo);
-		at.setNome(nome);
-
-		Cotacao cot = new Cotacao(at);
+		Quote cot = new Quote();
 		// Data="27/10/2010 13:24:47"
-		Date _dt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(data);
-
+		Date _dt = getData(data);
+		cot.setCodigo(codigo);
+		cot.setNome(nome);
 		cot.setData(_dt);
 		cot.setAbertura(Double.parseDouble(abertura.replace(",", ".")));
 		cot.setMaximo(Double.parseDouble(maximo.replace(",", ".")));
@@ -102,5 +98,19 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 		cot.setUltimo(Double.parseDouble(ultimo.replace(",", ".")));
 
 		return cot;
+	}
+
+	private Date getData(String data) throws ParseException {
+
+		String pattern = null;
+		if (data.contains(" ")) {
+			pattern = "dd/MM/yyyy HH:mm:ss";
+		} else {
+			pattern = "dd/MM/yyyyHH:mm:ss";
+		}
+
+		Date retorno = new SimpleDateFormat(pattern).parse(data);
+		return retorno;
+
 	}
 }
