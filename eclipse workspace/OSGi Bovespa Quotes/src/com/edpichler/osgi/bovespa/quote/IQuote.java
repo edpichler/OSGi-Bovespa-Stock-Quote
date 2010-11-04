@@ -1,4 +1,4 @@
-package com.edpichler.osgi.bovespa;
+package com.edpichler.osgi.bovespa.quote;
 
 import java.util.Date;
 

@@ -1,8 +1,8 @@
-package com.edpichler.osgi.bovespa.impl;
+package com.edpichler.osgi.bovespa.quote.impl;
 
 import java.util.Date;
 
-import com.edpichler.osgi.bovespa.IQuote;
+import com.edpichler.osgi.bovespa.quote.IQuote;
 
 public class Quote implements IQuote {
 

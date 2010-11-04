@@ -4,9 +4,9 @@ import java.util.List;
 
 import junit.framework.TestCase;
 
-import com.edpichler.osgi.bovespa.BovespaProvider;
-import com.edpichler.osgi.bovespa.IBovespaQuoteRetriever;
-import com.edpichler.osgi.bovespa.impl.Quote;
+import com.edpichler.osgi.bovespa.quote.BovespaProvider;
+import com.edpichler.osgi.bovespa.quote.IBovespaQuoteRetriever;
+import com.edpichler.osgi.bovespa.quote.impl.Quote;
 
 public class BovespaQuotesTest extends TestCase {
 

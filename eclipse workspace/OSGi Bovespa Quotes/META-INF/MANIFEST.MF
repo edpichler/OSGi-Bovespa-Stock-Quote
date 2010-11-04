@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: OSGi_Bovespa_Quotes
 Bundle-SymbolicName: OSGi_Bovespa_Quotes
 Bundle-Version: 1.2.0.0
-Export-Package: com.edpichler.osgi.bovespa
+Export-Package: com.edpichler.osgi.bovespa.quote
 Import-Package: org.jdom,
  org.jdom.input,
  org.jdom.output

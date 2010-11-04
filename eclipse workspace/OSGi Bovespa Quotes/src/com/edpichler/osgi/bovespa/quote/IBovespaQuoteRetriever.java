@@ -1,8 +1,8 @@
-package com.edpichler.osgi.bovespa;
+package com.edpichler.osgi.bovespa.quote;
 
 import java.util.List;
 
-import com.edpichler.osgi.bovespa.impl.Quote;
+import com.edpichler.osgi.bovespa.quote.impl.Quote;
 
 
 /**Classe para comunicação com a BMF Bovespa*/
