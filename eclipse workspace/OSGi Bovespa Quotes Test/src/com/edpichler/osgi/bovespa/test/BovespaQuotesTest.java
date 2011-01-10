@@ -1,5 +1,6 @@
 package com.edpichler.osgi.bovespa.test;
 
+import java.util.Calendar;
 import java.util.List;
 
 import junit.framework.TestCase;
@@ -14,6 +15,11 @@ public class BovespaQuotesTest extends TestCase {
 		IBovespaQuoteRetriever prov = BovespaProvider.createQuoteRetriever();
 		Quote quote = prov.getQuote("OGXP3");
 		double ultimo = quote.getUltimo();
+		Calendar data = quote.getData();
+//		System.out.println(data.getTimeZone().getID());
+//		System.out.println(data.getTimeZone().getDSTSavings());
+//		System.out.println(data.getTimeZone().getRawOffset());
+//		System.out.println(data.getTime().toString());		
 		assertTrue(ultimo != 0);
 	}
 
@@ -30,6 +36,5 @@ public class BovespaQuotesTest extends TestCase {
 			double ultimo = quotes.get(i).getUltimo();
 			assertTrue(ultimo != 0);
 		}
-
 	}
 }

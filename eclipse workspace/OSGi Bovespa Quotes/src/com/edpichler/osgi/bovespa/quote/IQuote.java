@@ -1,10 +1,11 @@
 package com.edpichler.osgi.bovespa.quote;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public interface IQuote {
 
-	/** Ex. Petrobrás */
+	/** Ex. Petrobrï¿½s */
 	public abstract String getNome();
 
 	public abstract void setNome(String nome);
@@ -16,15 +17,15 @@ public interface IQuote {
 
 	/**
 	 * 
-	 * @return a data da cotação do ativo. Horário de Brasília GMT -3.
+	 * @return a data da cotaï¿½ï¿½o do ativo. Horï¿½rio de Brasï¿½lia GMT -3.
 	 */
-	public abstract Date getData();
+	public abstract Calendar getData();
 
 	/**
 	 * @param data
 	 *            the data to set
 	 */
-	public abstract void setData(Date data);
+	public abstract void setData(Calendar data);
 
 	/**
 	 * @return the abertura

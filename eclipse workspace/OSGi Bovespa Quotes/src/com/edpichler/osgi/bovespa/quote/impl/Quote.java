@@ -1,12 +1,13 @@
 package com.edpichler.osgi.bovespa.quote.impl;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import com.edpichler.osgi.bovespa.quote.IQuote;
 
 public class Quote implements IQuote {
 
-	private Date data;
+	private Calendar data;
 	private double abertura, minimo, maximo, medio, ultimo, oscilacao;
 	private String nome, codigo;
 
@@ -56,7 +57,7 @@ public class Quote implements IQuote {
 	 * @see com.edpichler.osgi.bovespa.IQuote#getData()
 	 */
 	@Override
-	public Date getData() {
+	public Calendar getData() {
 		return data;
 	}
 
@@ -66,7 +67,7 @@ public class Quote implements IQuote {
 	 * @see com.edpichler.osgi.bovespa.IQuote#setData(java.util.Date)
 	 */
 	@Override
-	public void setData(Date data) {
+	public void setData(Calendar data) {
 		this.data = data;
 	}
 

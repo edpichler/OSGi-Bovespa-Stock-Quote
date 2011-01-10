@@ -4,8 +4,10 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import org.jdom.Document;
 import org.jdom.Element;
@@ -14,7 +16,7 @@ import org.jdom.input.SAXBuilder;
 import com.edpichler.osgi.bovespa.quote.impl.Quote;
 
 /**
- * Classe que retorna um objeto para comunicação com os servidores da Bovespa.
+ * Classe que retorna um objeto para comunicaï¿½ï¿½o com os servidores da Bovespa.
  * 
  * */
 public class BovespaProvider implements IBovespaQuoteRetriever {
@@ -78,7 +80,7 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 	}
 
 	/**
-	 * Cria um objeto cotação a partir dos parametros
+	 * Cria um objeto cotaï¿½ï¿½o a partir dos parametros
 	 * 
 	 * @throws ParseException
 	 * */
@@ -88,7 +90,7 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 
 		Quote cot = new Quote();
 		// Data="27/10/2010 13:24:47"
-		Date _dt = getData(data);
+		Calendar _dt = getData(data);
 		cot.setCodigo(codigo);
 		cot.setNome(nome);
 		cot.setData(_dt);
@@ -102,7 +104,7 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 		return cot;
 	}
 
-	private Date getData(String data) throws ParseException {
+	private Calendar getData(String data) throws ParseException {
 
 		String pattern = null;
 		if (data.contains(" ")) {
@@ -111,8 +113,12 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 			pattern = "dd/MM/yyyyHH:mm:ss";
 		}
 
-		Date retorno = new SimpleDateFormat(pattern).parse(data);
-		return retorno;
+		Date temp = new SimpleDateFormat(pattern).parse(data);
+		Calendar instance = Calendar.getInstance();
+		instance.setTimeInMillis(temp.getTime());
+		instance.setTimeZone(TimeZone.getTimeZone("GMT-3:00"));
+		
+		return instance;
 
 	}
 }
