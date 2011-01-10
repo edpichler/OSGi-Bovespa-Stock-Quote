@@ -6,6 +6,7 @@ import junit.framework.TestCase;
 
 import com.edpichler.osgi.bovespa.quote.BovespaProvider;
 import com.edpichler.osgi.bovespa.quote.IBovespaQuoteRetriever;
+import com.edpichler.osgi.bovespa.quote.IQuote;
 import com.edpichler.osgi.bovespa.quote.impl.Quote;
 
 public class BovespaQuotesTest extends TestCase {
@@ -25,7 +26,7 @@ public class BovespaQuotesTest extends TestCase {
 
 	public void testGetQuoteList() throws Exception {
 		IBovespaQuoteRetriever prov = BovespaProvider.createQuoteRetriever();
-		List<Quote> quotes = prov.getQuotes(new String[] { "OGXP3", "VALE5" });
+		List<IQuote> quotes = prov.getQuotes(new String[] { "OGXP3", "VALE5" });
 		for (int i = 0; i < quotes.size(); i++) {
 			double ultimo = quotes.get(i).getUltimo();
 			assertTrue(ultimo != 0);

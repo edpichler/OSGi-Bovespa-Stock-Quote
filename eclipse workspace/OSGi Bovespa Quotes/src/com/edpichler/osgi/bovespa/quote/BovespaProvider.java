@@ -14,7 +14,7 @@ import org.jdom.input.SAXBuilder;
 import com.edpichler.osgi.bovespa.quote.impl.Quote;
 
 /**
- * Classe que retorna um objeto para comunicação com os servidores da Bovespa.
+ * Classe que retorna um objeto para comunicaï¿½ï¿½o com os servidores da Bovespa.
  * 
  * */
 public class BovespaProvider implements IBovespaQuoteRetriever {
@@ -25,8 +25,8 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 	}
 
 	@Override
-	public List<Quote> getQuotes(String[] codigoAtivo) throws Exception {
-		List<Quote> lista = new ArrayList<Quote>();
+	public List<IQuote> getQuotes(String[] codigoAtivo) throws Exception {
+		List<IQuote> lista = new ArrayList<IQuote>();
 		for (int i = 0; i < codigoAtivo.length; i++) {
 			Quote quote = getQuote(codigoAtivo[i]);
 			lista.add(quote);
@@ -78,7 +78,7 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 	}
 
 	/**
-	 * Cria um objeto cotação a partir dos parametros
+	 * Cria um objeto cotaï¿½ï¿½o a partir dos parametros
 	 * 
 	 * @throws ParseException
 	 * */
