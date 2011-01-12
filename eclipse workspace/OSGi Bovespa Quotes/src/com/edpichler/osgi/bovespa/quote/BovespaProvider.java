@@ -4,8 +4,10 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import org.jdom.Document;
 import org.jdom.Element;
@@ -28,13 +30,13 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 	public List<IQuote> getQuotes(String[] codigoAtivo) throws Exception {
 		List<IQuote> lista = new ArrayList<IQuote>();
 		for (int i = 0; i < codigoAtivo.length; i++) {
-			Quote quote = getQuote(codigoAtivo[i]);
+			IQuote quote = getQuote(codigoAtivo[i]);
 			lista.add(quote);
 		}
 		return lista;
 	}
 
-	public Quote getQuote(String codigoAtivo) throws Exception {
+	public IQuote getQuote(String codigoAtivo) throws Exception {
 		String quoteUrlRequest = BOVESPA_QUOTE_URL + "?CodigoPapel="
 				+ codigoAtivo;
 
@@ -111,8 +113,22 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 			pattern = "dd/MM/yyyyHH:mm:ss";
 		}
 
-		Date retorno = new SimpleDateFormat(pattern).parse(data);
-		return retorno;
+		Date temp = new SimpleDateFormat(pattern).parse(data);
+		Calendar instance = Calendar.getInstance();
+		instance.setTime(temp);
+		instance.setTimeZone(TimeZone.getTimeZone("GMT-3:00"));
+		return instance.getTime();
 
 	}
+//	public static void main(String[] args) {
+//		Date data;
+//		try {
+//			data = new BovespaProvider().getData("10/01/2011 17:36:56");
+//			System.out.println(data.toString());
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//	}
 }
