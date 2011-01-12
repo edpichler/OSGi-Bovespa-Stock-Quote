@@ -4,10 +4,8 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 import org.jdom.Document;
 import org.jdom.Element;
@@ -113,22 +111,8 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 			pattern = "dd/MM/yyyyHH:mm:ss";
 		}
 
-		Date temp = new SimpleDateFormat(pattern).parse(data);
-		Calendar instance = Calendar.getInstance();
-		instance.setTime(temp);
-		instance.setTimeZone(TimeZone.getTimeZone("GMT-3:00"));
-		return instance.getTime();
+		Date retorno = new SimpleDateFormat(pattern).parse(data);
+		return retorno;
 
 	}
-//	public static void main(String[] args) {
-//		Date data;
-//		try {
-//			data = new BovespaProvider().getData("10/01/2011 17:36:56");
-//			System.out.println(data.toString());
-//		} catch (ParseException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//	}
 }
