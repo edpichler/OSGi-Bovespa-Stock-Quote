@@ -4,8 +4,10 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import org.jdom.Document;
 import org.jdom.Element;
@@ -96,7 +98,9 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 		cot.setMaximo(Double.parseDouble(maximo.replace(",", ".")));
 		cot.setMinimo(Double.parseDouble(minimo.replace(",", ".")));
 		cot.setMedio(Double.parseDouble(medio.replace(",", ".")));
-		cot.setOscilacao(Double.parseDouble(oscilacao.replace(",", ".")));
+		if(oscilacao != null && oscilacao.length() > 0){
+			cot.setOscilacao(Double.parseDouble(oscilacao.replace(",", ".")));
+		}
 		cot.setUltimo(Double.parseDouble(ultimo.replace(",", ".")));
 
 		return cot;
@@ -111,8 +115,22 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 			pattern = "dd/MM/yyyyHH:mm:ss";
 		}
 
-		Date retorno = new SimpleDateFormat(pattern).parse(data);
-		return retorno;
+		Date temp = new SimpleDateFormat(pattern).parse(data);
+		Calendar instance = Calendar.getInstance();
+		instance.setTime(temp);
+		instance.setTimeZone(TimeZone.getTimeZone("GMT-3:00"));
+		return instance.getTime();
 
 	}
+//	public static void main(String[] args) {
+//		Date data;
+//		try {
+//			data = new BovespaProvider().getData("10/01/2011 17:36:56");
+//			System.out.println(data.toString());
+//		} catch (ParseException e) {
+//			
+//			e.printStackTrace();
+//		}
+//		
+//	}
 }
