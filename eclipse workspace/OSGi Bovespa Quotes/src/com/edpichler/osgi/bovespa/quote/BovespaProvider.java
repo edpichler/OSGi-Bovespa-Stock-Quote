@@ -31,7 +31,10 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 		List<IQuote> lista = new ArrayList<IQuote>();
 		for (int i = 0; i < codigoAtivo.length; i++) {
 			IQuote quote = getQuote(codigoAtivo[i]);
-			lista.add(quote);
+			if (quote != null) {
+				//only valid quotes.
+				lista.add(quote);
+			}
 		}
 		return lista;
 	}
@@ -98,7 +101,7 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 		cot.setMaximo(Double.parseDouble(maximo.replace(",", ".")));
 		cot.setMinimo(Double.parseDouble(minimo.replace(",", ".")));
 		cot.setMedio(Double.parseDouble(medio.replace(",", ".")));
-		if(oscilacao != null && oscilacao.length() > 0){
+		if (oscilacao != null && oscilacao.length() > 0) {
 			cot.setOscilacao(Double.parseDouble(oscilacao.replace(",", ".")));
 		}
 		cot.setUltimo(Double.parseDouble(ultimo.replace(",", ".")));
@@ -122,15 +125,15 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 		return instance.getTime();
 
 	}
-//	public static void main(String[] args) {
-//		Date data;
-//		try {
-//			data = new BovespaProvider().getData("10/01/2011 17:36:56");
-//			System.out.println(data.toString());
-//		} catch (ParseException e) {
-//			
-//			e.printStackTrace();
-//		}
-//		
-//	}
+	// public static void main(String[] args) {
+	// Date data;
+	// try {
+	// data = new BovespaProvider().getData("10/01/2011 17:36:56");
+	// System.out.println(data.toString());
+	// } catch (ParseException e) {
+	//
+	// e.printStackTrace();
+	// }
+	//
+	// }
 }
