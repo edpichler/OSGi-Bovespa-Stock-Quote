@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
+import java.util.logging.Logger;
 
 import org.jdom.Document;
 import org.jdom.Element;
@@ -97,16 +98,28 @@ public class BovespaProvider implements IBovespaQuoteRetriever {
 		cot.setCodigo(codigo);
 		cot.setNome(nome);
 		cot.setData(_dt);
-		cot.setAbertura(Double.parseDouble(abertura.replace(",", ".")));
-		cot.setMaximo(Double.parseDouble(maximo.replace(",", ".")));
-		cot.setMinimo(Double.parseDouble(minimo.replace(",", ".")));
-		cot.setMedio(Double.parseDouble(medio.replace(",", ".")));
-		if (oscilacao != null && oscilacao.length() > 0) {
-			cot.setOscilacao(Double.parseDouble(oscilacao.replace(",", ".")));
-		}
-		cot.setUltimo(Double.parseDouble(ultimo.replace(",", ".")));
+		cot.setAbertura(getDouble(abertura));
+		cot.setMaximo(getDouble(maximo));
+		cot.setMinimo(getDouble(minimo));
+		cot.setMedio(getDouble(medio));
+		cot.setOscilacao(getDouble(oscilacao));		
+		cot.setUltimo(getDouble(ultimo));
 
 		return cot;
+	}
+
+	private double getDouble(String valor) {
+		if(valor != null && valor.length() > 0 ){
+			try{
+			 return Double.parseDouble(valor.replace(",", "."));
+			}catch(NumberFormatException ex){
+				//if Bovespa send some bad string, I need to handle it.
+				return 0;
+			}
+		}else{
+			return 0;	
+		}
+		
 	}
 
 	private Date getData(String data) throws ParseException {
